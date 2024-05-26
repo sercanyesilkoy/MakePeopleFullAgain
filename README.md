@@ -4,9 +4,7 @@
 
 Make People Full Again is a food bank management system designed to streamline the distribution of meals to those in need. It includes features such as user registration, meal logging, and menu management, ensuring efficient and fair distribution of resources.
 
-This project is developed as part of the Design Patterns class at Hankuk University of Foreign Studies, conducted by Prof. Byunghwan Jeon, PhD. The project implements several design patterns, including Singleton, Factory, Strategy, and Chain of Responsibility.
-
-The front end of the project will be developed using Flutter.
+This project is developed as part of the Design Patterns class at Hankuk University of Foreign Studies, conducted by **Prof. Byunghwan Jeon, PhD**. The project implements several design patterns, including Singleton, Factory, Strategy, and Chain of Responsibility.
 
 ## Team Members
 
