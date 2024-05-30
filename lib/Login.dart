@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_new_app/services/api_service.dart';
 import 'Register_1.dart';
+import 'AdminScreen.dart'; // 관리자 화면 import (예시, 실제 파일 경로에 맞게 수정)
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -11,12 +13,36 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _IDController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  int remainingQuantity = 100; // 남은 수량 변수 추가
 
-  void _login() {
-    // 로그인 로직을 구현하세요.
-    print('ID: ${_IDController.text}');
-    print('Password: ${_passwordController.text}');
+  Future<void> _login() async {
+    String id = _IDController.text;
+    String password = _passwordController.text;
+
+    var response = await loginUser(id, password);
+
+    if (response['message'].startsWith('Meal provided')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response['message'])),
+      );
+      await Future.delayed(Duration(seconds: 5));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    } else if (response['message'].startsWith('Meal capacity')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response['message'])),
+      );
+      await Future.delayed(Duration(seconds: 5));
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(response['message'])),
+      );
+    }
   }
 
   @override
@@ -25,46 +51,23 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black), // 뒤로가기 버튼 색상 설정
         elevation: 0, // 구분선 제거
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.admin_panel_settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AdminScreen()),
+              );
+            },
+            color: Colors.black, // 아이콘 색상 설정
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Remaining Quantity',
-              style: TextStyle(
-                color: Colors.black, // 검은색 글씨
-                fontSize: 24, // 폰트 크기
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              width: 148,
-              height: 40,
-              padding: const EdgeInsets.all(0),
-              child: Center(
-                child: Text(
-                  '$remainingQuantity',
-                  style: TextStyle(
-                    color: Colors.black, // 검은색 글씨
-                    fontSize: 30, // 폰트 크기 30px
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 50, // 높이 설정
-              padding: const EdgeInsets.all(0),
-              child: Center(
-                child: Text(
-                  '주문이 성공적으로 완료되었습니다.',
-                  style: TextStyle(
-                    color: Colors.black, // 검은색 글씨
-                    fontSize: 15, // 폰트 크기
-                  ),
-                ),
-              ),
-            ),
             Text(
               'Log in',
               style: TextStyle(
@@ -124,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: ElevatedButton(
                 onPressed: _login,
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black, // 검은색 배경
+                  backgroundColor: Colors.black, // 검은색 배경
                   padding: EdgeInsets.zero,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6), // 2의 radius 적용
@@ -147,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.transparent, // 투명 배경
+                  backgroundColor: Colors.transparent, // 투명 배경
                   shadowColor: Colors.transparent, // 그림자 효과 없음
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.zero,
