@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\seokj\Desktop\MakePeopleFullAgain\frontend\build\windows\x64\CMakeFiles\8103ae44150910a22f4291d0adb43569\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5EDA4760-61DA-3DD1-8E92-FBFA4339BF04}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -7,7 +7,8 @@ const String baseUrl = 'http://10.0.2.2:5000';
 // 실제 디바이스에서 실행할 경우
 // const String baseUrl = 'http://192.168.1.2:5000';  // 서버가 실행 중인 컴퓨터의 로컬 IP 주소로 변경하세요.
 
-Future<Map<String, dynamic>> registerUser(String id, String name, int age, int income, String password) async {
+Future<Map<String, dynamic>> registerUser(
+    String id, String name, int age, int income, String password) async {
   final response = await http.post(
     Uri.parse('$baseUrl/create_user'),
     headers: <String, String>{

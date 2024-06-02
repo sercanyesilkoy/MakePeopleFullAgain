@@ -1,0 +1,1 @@
+ C:\\Users\\seokj\\Desktop\\MakePeopleFullAgain\\frontend\\.dart_tool\\flutter_build\\d685d578617a6f0dcb9980b750b65b76\\native_assets.yaml: 
